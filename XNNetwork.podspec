@@ -15,11 +15,11 @@ Pod::Spec.new do |s|
   
   s.subspec 'Define' do |ss|
     ss.source_files = "XNNetwork/XNNetwork/Define/*.swift"
+    ss.dependency 'Alamofire'
   end
   
   s.subspec 'Configuration' do |ss|
     ss.dependency 'XNNetwork/Define'
-    ss.dependency 'Alamofire'
    
     ss.source_files = "XNNetwork/XNNetwork/Configuration/*.swift"
   end
