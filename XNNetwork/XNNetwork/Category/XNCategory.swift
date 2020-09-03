@@ -10,7 +10,13 @@ import UIKit
 
 extension Dictionary {
     func jsonString(isPrettyPrint: Bool) -> String {
-        guard let jsonData = try? JSONSerialization.data(withJSONObject: self, options: isPrettyPrint ? .prettyPrinted : JSONSerialization.WritingOptions(rawValue: 0)) else { return "{}" }
+        
+        var jsonObject: Any?
+        do {
+            jsonObject = try JSONSerialization.data(withJSONObject: self, options: isPrettyPrint ? .prettyPrinted : JSONSerialization.WritingOptions(rawValue: 0))
+        } catch {}
+        
+        guard let jsonData = jsonObject as? Data else { return "{}" }
         return String(data: jsonData, encoding: .utf8) ?? "{}"
     }
 }

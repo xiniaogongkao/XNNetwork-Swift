@@ -153,11 +153,17 @@ extension XNRequestManager {
             self.dispatchFailResult(errorModel: XNErrorModel(errorType: .JSONError, response: response.response))
             return
         }
-        guard let jsonDict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? Dictionary<String, Any> else {
+        
+        var jsonObject: Any?
+        do {
+            jsonObject = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
+        } catch {}
+        
+        guard let jsonDict = jsonObject as? Dictionary<String, Any> else {
             self.dispatchFailResult(errorModel: XNErrorModel(errorType: .JSONError, response: response.response))
             return
         }
-        
+      
         let status = Int("\(self.findValue(dict: jsonDict, keys: self.domainConfigutionDelegate.configuration().keyModel.statusKeys))") ?? 0
         
         let message = "\(self.findValue(dict: jsonDict, keys: self.domainConfigutionDelegate.configuration().keyModel.messageKeys))"
