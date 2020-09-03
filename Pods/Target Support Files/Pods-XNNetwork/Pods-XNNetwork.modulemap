@@ -1,0 +1,6 @@
+framework module Pods_XNNetwork {
+  umbrella header "Pods-XNNetwork-umbrella.h"
+
+  export *
+  module * { export * }
+}
