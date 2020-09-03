@@ -3,6 +3,7 @@
 Pod::Spec.new do |s|
   s.name         = "XNNetwork"
   s.version      = "1.0"
+  s.swift_versions = ["5.0"]
   s.summary      = "犀鸟网络库"
   s.homepage     = "https://github.com/xiniaogongkao/XNNetwork-Swift.git"
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
