@@ -46,7 +46,7 @@ protocol XNRequestDomainConfigutionDelegate: NSObjectProtocol {
 
 /// 参数设置
 protocol XNRequestParamsDelegate: NSObjectProtocol {
-    func requestParams() -> Dictionary<String, Any>
+    func requestParams() -> Dictionary<String, Any>?
     func requestHeaders() -> Dictionary<String, String>
 }
 
@@ -122,7 +122,7 @@ class XNRequestManager: NSObject {
         
         let headers = self.domainConfigutionDelegate.configuration().header.merging(self.paramsDelegate.requestHeaders(), uniquingKeysWith: {$1})
         
-        let params = self.domainConfigutionDelegate.configuration().body.merging(self.paramsDelegate.requestParams(), uniquingKeysWith: {$1})
+        let params = self.domainConfigutionDelegate.configuration().body.merging(self.paramsDelegate.requestParams() ?? [:], uniquingKeysWith: {$1})
     
         XNNetworkLog.logRequestInfo(uri: uri.rawValue, params: params)
         
@@ -153,7 +153,7 @@ extension XNRequestManager {
             self.dispatchFailResult(errorModel: XNErrorModel(errorType: .JSONError, response: response.response))
             return
         }
-        guard let jsonDict: Dictionary<String, Any> = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Dictionary<String, Any> else {
+        guard let jsonDict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? Dictionary<String, Any> else {
             self.dispatchFailResult(errorModel: XNErrorModel(errorType: .JSONError, response: response.response))
             return
         }

@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.statusConfigs = [XNAPIResposeStatusModel(type: .success, status: 100), XNAPIResposeStatusModel(type: .success, status: 200)]
         XNAPIConfiguration.registerConfiguration(config)
 
-        XNTestAPIManager.shared.request(uri: .testUri, params: ["user_token" : "f3ff0d74692757763433afed97dc81d1", "is_project" : 1], successBlock: { (manager, json) in
+        XNTestAPIManager.shared.request(uri: .testUri, params: nil, successBlock: { (manager, json) in
             
         }) { (manager, errorModel) in
             

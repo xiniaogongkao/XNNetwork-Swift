@@ -10,7 +10,7 @@ import UIKit
 
 class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNRequestDomainConfigutionDelegate, XNRequestParamsDelegate, XNRequestValidatorDelegate, XNRequestCallbackDelegate {
     
-    private var params: Dictionary<String, Any> = [:]
+    private var params: Dictionary<String, Any>?
     private var uri: XNNetworkDefine.XNHtmlURIName = .default
    
     override init() {
@@ -38,7 +38,7 @@ class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNReques
         return XNAPIConfiguration()
     }
     
-    func requestParams() -> Dictionary<String, Any> {
+    func requestParams() -> Dictionary<String, Any>? {
         return self.params
     }
     
@@ -59,7 +59,7 @@ class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNReques
 extension XNBaseAPIManager {
     
     @discardableResult
-    func request(uri: XNNetworkDefine.XNHtmlURIName, params: Dictionary<String, Any>, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
+    func request(uri: XNNetworkDefine.XNHtmlURIName, params: Dictionary<String, Any>? = nil, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
         self.uri = uri
         self.params = params
         return self.startRequest(successBlock: successBlock, failedBlock: failedBlock)
