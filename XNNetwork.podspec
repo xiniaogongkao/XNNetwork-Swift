@@ -12,8 +12,6 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/xiniaogongkao/XNNetwork-Swift.git", :tag => "1.0" }
   s.requires_arc = true
   
-  s.source_files  = "XNNetwork/XNNetwork/*.swift"
-  
   s.subspec 'Define' do |ss|
     ss.source_files = "XNNetwork/XNNetwork/Define/*.swift"
     ss.dependency 'Alamofire'
