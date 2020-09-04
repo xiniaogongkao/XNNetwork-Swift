@@ -127,11 +127,13 @@ class XNRequestManager: NSObject {
         XNNetworkLog.logRequestInfo(uri: uri.rawValue, params: params)
         
         requestID = XNNetworkAgent.shared.request(type: type, requestSerializerType: rType, headers: headers, params: params, domain: domain, uri: uri, success: { [weak self] (response) in
+            self?.requestIDs.remove(at: requestID)
             self?.success(response: response)
         }) { [weak self] (response) in
+            self?.requestIDs.remove(at: requestID)
             self?.fail(response: response)
         }
-        
+        self.requestIDs.append(requestID)
         return requestID
     }
     
