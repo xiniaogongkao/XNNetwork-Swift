@@ -11,6 +11,20 @@ import UIKit
 class XNNetworkDefine: NSObject {}
 
 extension XNNetworkDefine {
+    
+    public struct XNConfigKey : Hashable, Equatable, RawRepresentable {
+        public var rawValue: String
+        
+        public init(_ rawValue: String) {
+            self.rawValue = rawValue
+        }
+        
+        public init(rawValue: String) {
+            self.init(rawValue)
+        }
+    }
+    
+    
     public struct XNRequestURIName : Hashable, Equatable, RawRepresentable {
         public var rawValue: String
         
@@ -21,6 +35,8 @@ extension XNNetworkDefine {
         public init(rawValue: String) {
             self.init(rawValue)
         }
+        
+        static let `default` = XNRequestURIName(rawValue: "")
     }
     
     public struct XNHtmlURIName : Hashable, Equatable, RawRepresentable {

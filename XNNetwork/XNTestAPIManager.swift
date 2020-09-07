@@ -7,12 +7,12 @@
 //
 
 class XNTestAPIManager: XNBaseAPIManager {
-    
+
     ///可通过单利、代理两种形式，单利发起请求是 request 方法
     static let shared = XNTestAPIManager()
     
     override func configuration() -> XNAPIConfiguration {
-        return XNAPIConfiguration.configuration(domain: .testDomain) ?? XNAPIConfiguration()
+        return XNAPIConfiguration.configuration(key: .testConfigKey) ?? XNAPIConfiguration()
     }
     
     ///针对域名通用的可以写在config中
@@ -28,14 +28,10 @@ class XNTestAPIManager: XNBaseAPIManager {
 }
 
 ///写在通用配置中
-extension XNNetworkDefine.XNHtmlURIName {
-    static let testUri = XNNetworkDefine.XNHtmlURIName(rawValue: "/code/course/courseIndexBanner")
+extension XNNetworkDefine.XNRequestURIName {
+    static let testUri = XNNetworkDefine.XNRequestURIName(rawValue: "/code/course/courseIndexBanner")
 }
 
-extension XNNetworkDefine.XNDomainName {
-    #if DEBUG
-    static let testDomain = XNNetworkDefine.XNDomainName(rawValue: "http://appformal.xiniaogongkao.com")
-    #else
-    static let testDomain = XNNetworkDefine.XNDomainName(rawValue: "http://appformal.xiniaogongkao.com")
-    #endif
+extension XNNetworkDefine.XNConfigKey {
+    static let testConfigKey = XNNetworkDefine.XNConfigKey(rawValue: "testConfigKey")
 }

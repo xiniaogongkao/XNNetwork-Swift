@@ -14,7 +14,7 @@ typealias XNAPIRequestFailedBlock = (XNRequestManager, XNErrorModel) -> ()
 
 /// 基本配置设置，针对单个请求
 protocol XNRequestConfigutionDelegate: NSObjectProtocol {
-    func requestURI() -> XNNetworkDefine.XNHtmlURIName
+    func requestURI() -> XNNetworkDefine.XNRequestURIName
     func requestType() -> XNAPIRequestType
     func requestSerializerType() -> XNAPIRequestSerializerType
     
@@ -127,10 +127,10 @@ class XNRequestManager: NSObject {
         XNNetworkLog.logRequestInfo(uri: uri.rawValue, params: params)
         
         requestID = XNNetworkAgent.shared.request(type: type, requestSerializerType: rType, headers: headers, params: params, domain: domain, uri: uri, success: { [weak self] (response) in
-            self?.requestIDs.remove(at: requestID)
+            self?.remove(requestID: requestID)
             self?.success(response: response)
         }) { [weak self] (response) in
-            self?.requestIDs.remove(at: requestID)
+            self?.remove(requestID: requestID)
             self?.fail(response: response)
         }
         self.requestIDs.append(requestID)
@@ -215,6 +215,15 @@ extension XNRequestManager {
             }
         }
         return ""
+    }
+    
+    private func remove(requestID: Int) {
+        for (index, id) in self.requestIDs.enumerated() {
+            if id.isMultiple(of: requestID) {
+                self.requestIDs.remove(at: index)
+                break
+            }
+        }
     }
     
     private func fail(response: XNResponse) {

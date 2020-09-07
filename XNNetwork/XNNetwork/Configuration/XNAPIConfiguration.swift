@@ -46,20 +46,71 @@ class XNAPIConfiguration: NSObject {
     var keyModel: XNAPIResposeKeyModel = XNAPIResposeKeyModel(statusKeys: ["code", "status"], messageKeys: ["message", "msg"], dataKeys: ["data"])
     var statusConfigs: Array<XNAPIResposeStatusModel> = [XNAPIResposeStatusModel(type: .success, status: 100)]
     
-    private var configurations: Dictionary<XNNetworkDefine.XNDomainName, XNAPIConfiguration?> = [:]
+    private let k = "XNAPIConfiguration_k"
+    /// 记录key值与域名值得对应关系，调试模式会根据此属性更改key所对应的config的域名值
+    private var debugRecord: Dictionary<String, String> {
+        get {
+            return UserDefaults.standard.value(forKey: k) as? Dictionary<String, String> ?? [:]
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: k)
+        }
+    }
+    
+    private var debugOriginRecord: Dictionary<String, String> = [:]
+    
+    private var configurations: Dictionary<XNNetworkDefine.XNConfigKey, XNAPIConfiguration> = [:]
     
     private static let shared = XNAPIConfiguration()
     
-    class func registerConfiguration(_ configuration: XNAPIConfiguration) {
+    class func registerConfiguration(_ configuration: XNAPIConfiguration, key: XNNetworkDefine.XNConfigKey) {
         if configuration.domain.rawValue.count == 0 {
             print("\(#function)_必须声明域名")
             return
         }
-        self.shared.configurations[configuration.domain] = configuration
+        self.shared.debugOriginRecord[key.rawValue] = configuration.domain.rawValue
+        self.shared.configurations[key] = configuration
+    }
+    
+    class func configuration(key: XNNetworkDefine.XNConfigKey) -> XNAPIConfiguration? {
+        let config = self.shared.configurations[key]
+        #if DEBUG
+        if let keyValue = config?.debugRecord[key.rawValue] {
+            config?.domain.rawValue = keyValue
+        } else if let keyValue = config?.debugOriginRecord[key.rawValue] {
+            config?.domain.rawValue = keyValue
+        }
+        #endif
+        return config
     }
     
     class func configuration(domain: XNNetworkDefine.XNDomainName) -> XNAPIConfiguration? {
-        return self.shared.configurations[domain] as? XNAPIConfiguration
+        for config in self.shared.configurations.values {
+            if config.domain.rawValue == domain.rawValue {
+                return config
+            }
+        }
+        return XNAPIConfiguration()
+    }
+    
+    /// 所有配置
+    /// - Returns: 所有配置
+    class func all() -> Dictionary<XNNetworkDefine.XNConfigKey, XNAPIConfiguration> {
+        return self.shared.configurations
+    }
+    
+    /// 清除调试key值与domain值
+    class func debug_clean() {
+        let config = self.shared
+        config.debugRecord = [:]
+    }
+    
+     /// 高边调试key值与domain值
+    class func debug_change(key: String, domain: String) {
+        let config = self.shared
+        var dict = config.debugRecord
+        dict[key] = domain
+        config.debugRecord = dict
     }
     
     ///根据状态码返回XNAPIResposeStatusModel

@@ -21,8 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         config.domain = XNNetworkDefine.XNDomainName(rawValue: "http://appformal.xiniaogongkao.com")
         config.keyModel = XNAPIResposeKeyModel(statusKeys: ["code", "status"], messageKeys: ["message", "msg"], dataKeys: ["data"])
         config.statusConfigs = [XNAPIResposeStatusModel(type: .success, status: 100), XNAPIResposeStatusModel(type: .success, status: 200)]
-        XNAPIConfiguration.registerConfiguration(config)
 
+        XNAPIConfiguration.registerConfiguration(config, key: .testConfigKey)
+
+        print("\(XNAPIConfiguration.all())")
+        
         XNTestAPIManager.shared.request(uri: .testUri, params: nil, successBlock: { (manager, json) in
             
         }) { (manager, errorModel) in

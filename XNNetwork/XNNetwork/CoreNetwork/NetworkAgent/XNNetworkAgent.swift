@@ -19,7 +19,7 @@ class XNNetworkAgent: NSObject {
     private let session = SessionManager(configuration: URLSessionConfiguration.default)
     
     @discardableResult
-    func request(type: XNAPIRequestType, requestSerializerType: XNAPIRequestSerializerType, headers: Dictionary<String, String>, params: Dictionary<String, Any>, domain: XNNetworkDefine.XNDomainName, uri: XNNetworkDefine.XNHtmlURIName, success: XNNetworkCallBack? = nil, fail: XNNetworkCallBack? = nil) -> Int {
+    func request(type: XNAPIRequestType, requestSerializerType: XNAPIRequestSerializerType, headers: Dictionary<String, String>, params: Dictionary<String, Any>, domain: XNNetworkDefine.XNDomainName, uri: XNNetworkDefine.XNRequestURIName, success: XNNetworkCallBack? = nil, fail: XNNetworkCallBack? = nil) -> Int {
         
         guard let config = XNAPIConfiguration.configuration(domain: domain) else {
             print("\(#function)_error_域名未注册")
