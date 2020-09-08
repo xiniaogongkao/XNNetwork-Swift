@@ -36,7 +36,7 @@ extension XNNetworkDefine {
             self.init(rawValue)
         }
         
-        static let `default` = XNRequestURIName(rawValue: "")
+        public static let `default` = XNRequestURIName(rawValue: "")
     }
     
     public struct XNHtmlURIName : Hashable, Equatable, RawRepresentable {
@@ -50,7 +50,7 @@ extension XNNetworkDefine {
             self.init(rawValue)
         }
         
-        static let `default` = XNHtmlURIName(rawValue: "")
+        public static let `default` = XNHtmlURIName(rawValue: "")
     }
     
     public struct XNDomainName : Hashable, Equatable, RawRepresentable {
@@ -64,9 +64,9 @@ extension XNNetworkDefine {
             self.init(rawValue)
         }
         #if DEBUG
-        static let `default` = XNDomainName(rawValue: "http://apitest.xiniaogongkao.com")
+        public static let `default` = XNDomainName(rawValue: "http://apitest.xiniaogongkao.com")
         #else
-        static let `default` = XNDomainName(rawValue: "http://apitest.xiniaogongkao.com")
+        public static let `default` = XNDomainName(rawValue: "http://apitest.xiniaogongkao.com")
         #endif
     }
     
@@ -100,8 +100,8 @@ extension XNNetworkDefine {
         }
         保持结构固定，以便拓展处理
         */
-        static let list = XNNetworkKey(rawValue: "list")
-        static let value = XNNetworkKey(rawValue: "value")
+        public static let list = XNNetworkKey(rawValue: "list")
+        public static let value = XNNetworkKey(rawValue: "value")
     }
 }
 

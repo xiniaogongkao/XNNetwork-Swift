@@ -8,9 +8,9 @@
 
 import UIKit
 
-typealias XNAPIRequestSuccessBlock = (XNRequestManager, Dictionary<String, Any>) -> ()
+public typealias XNAPIRequestSuccessBlock = (XNRequestManager, Dictionary<String, Any>) -> ()
 
-typealias XNAPIRequestFailedBlock = (XNRequestManager, XNErrorModel) -> ()
+public typealias XNAPIRequestFailedBlock = (XNRequestManager, XNErrorModel) -> ()
 
 /// 基本配置设置，针对单个请求
 public protocol XNRequestConfigutionDelegate: NSObjectProtocol {
@@ -95,7 +95,7 @@ public class XNRequestManager: NSObject {
     private var failedBlock: XNAPIRequestFailedBlock?
     
     @discardableResult
-    func startRequest(successBlock: XNAPIRequestSuccessBlock? = nil, failedBlock: XNAPIRequestFailedBlock? = nil) -> Int {
+    public func startRequest(successBlock: XNAPIRequestSuccessBlock? = nil, failedBlock: XNAPIRequestFailedBlock? = nil) -> Int {
         self.successBlock = successBlock
         self.failedBlock = failedBlock
         
@@ -137,12 +137,12 @@ public class XNRequestManager: NSObject {
         return requestID
     }
     
-    func cancelAllRequest() {
+    public func cancelAllRequest() {
         XNNetworkAgent.shared.cancelAllRequest()
         self.requestIDs.removeAll()
     }
     
-    func cancelRequest(requestID: Int) {
+    public func cancelRequest(requestID: Int) {
         XNNetworkAgent.shared.cancelRequest(requestID: requestID)
         self.requestIDs.remove(at: requestID)
     }

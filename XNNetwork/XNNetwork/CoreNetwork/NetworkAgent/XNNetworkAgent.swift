@@ -11,7 +11,7 @@ import Alamofire
 
 typealias XNNetworkCallBack = (XNResponse) -> ()
 
-public class XNNetworkAgent: NSObject {
+class XNNetworkAgent: NSObject {
     static let shared = XNNetworkAgent()
     
     private var dispatchTable: Dictionary<Int, DataRequest> = [:]

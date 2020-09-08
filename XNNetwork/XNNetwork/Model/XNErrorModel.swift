@@ -9,10 +9,10 @@
 import UIKit
 
 public class XNErrorModel: NSObject, Error {
-    var status: Int?
-    var message: String?
-    var errorType: XNAPIManagerErrorType?
-    var response: HTTPURLResponse?
+    public var status: Int?
+    public var message: String?
+    public var errorType: XNAPIManagerErrorType?
+    public var response: HTTPURLResponse?
     
     convenience init(errorType: XNAPIManagerErrorType, response: HTTPURLResponse?) {
         self.init()

@@ -9,11 +9,11 @@
 import UIKit
 
 public class XNResponse: NSObject {
-    var response: HTTPURLResponse?
-    var responseObject: Data?
-    var error: Error?
+    public var response: HTTPURLResponse?
+    public var responseObject: Data?
+    public var error: Error?
     
-    init(response: HTTPURLResponse?, responseObject: Data?, error: Error?) {
+    public init(response: HTTPURLResponse?, responseObject: Data?, error: Error?) {
         self.response = response
         self.responseObject = responseObject
         self.error = error
