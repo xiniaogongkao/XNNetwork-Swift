@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XNErrorModel: NSObject, Error {
+public class XNErrorModel: NSObject, Error {
     var status: Int?
     var message: String?
     var errorType: XNAPIManagerErrorType?

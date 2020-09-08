@@ -9,19 +9,19 @@
 import UIKit
 
 /// 兼容同域名下key不同的情况
-class XNAPIResposeKeyModel: NSObject {
+public class XNAPIResposeKeyModel: NSObject {
     var statusKeys: Array<String>
     var messageKeys: Array<String>
     var dataKeys: Array<String>
     
-    init(statusKeys: Array<String>, messageKeys: Array<String>, dataKeys: Array<String>) {
+    public init(statusKeys: Array<String>, messageKeys: Array<String>, dataKeys: Array<String>) {
         self.statusKeys = statusKeys
         self.messageKeys = messageKeys
         self.dataKeys = dataKeys
     }
 }
 
-class XNAPIResposeStatusModel: NSObject {
+public class XNAPIResposeStatusModel: NSObject {
     var type: XNAPIResposeStatus = .otherError
     var status: Int = -1
     
@@ -33,7 +33,7 @@ class XNAPIResposeStatusModel: NSObject {
     
 }
 
-class XNAPIConfiguration: NSObject {
+public class XNAPIConfiguration: NSObject {
     /// 域名
     var domain: XNNetworkDefine.XNDomainName = .default
     /// 通用header参数设置

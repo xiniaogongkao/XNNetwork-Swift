@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XNResponse: NSObject {
+public class XNResponse: NSObject {
     var response: HTTPURLResponse?
     var responseObject: Data?
     var error: Error?

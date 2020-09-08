@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XNNetworkLog: NSObject {
+public class XNNetworkLog: NSObject {
     class func logRequestInfo(uri: String, params: Dictionary<String, Any>) {
         print("------------ Request Info --------------")
         self.logURI(uri)

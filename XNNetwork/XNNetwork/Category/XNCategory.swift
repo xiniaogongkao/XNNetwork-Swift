@@ -9,7 +9,7 @@
 import UIKit
 
 extension Dictionary {
-    func jsonString(isPrettyPrint: Bool) -> String {
+    public func jsonString(isPrettyPrint: Bool) -> String {
         
         var jsonObject: Any?
         do {

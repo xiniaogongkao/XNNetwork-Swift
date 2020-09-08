@@ -13,7 +13,7 @@ typealias XNAPIRequestSuccessBlock = (XNRequestManager, Dictionary<String, Any>)
 typealias XNAPIRequestFailedBlock = (XNRequestManager, XNErrorModel) -> ()
 
 /// 基本配置设置，针对单个请求
-protocol XNRequestConfigutionDelegate: NSObjectProtocol {
+public protocol XNRequestConfigutionDelegate: NSObjectProtocol {
     func requestURI() -> XNNetworkDefine.XNRequestURIName
     func requestType() -> XNAPIRequestType
     func requestSerializerType() -> XNAPIRequestSerializerType
@@ -40,17 +40,17 @@ extension XNRequestConfigutionDelegate {
 }
 
 /// 域名下的配置
-protocol XNRequestDomainConfigutionDelegate: NSObjectProtocol {
+public protocol XNRequestDomainConfigutionDelegate: NSObjectProtocol {
     func configuration() -> XNAPIConfiguration
 }
 
 /// 参数设置
-protocol XNRequestParamsDelegate: NSObjectProtocol {
+public protocol XNRequestParamsDelegate: NSObjectProtocol {
     func requestParams() -> Dictionary<String, Any>?
     func requestHeaders() -> Dictionary<String, String>
 }
 
-protocol XNRequestValidatorDelegate: NSObjectProtocol {
+public protocol XNRequestValidatorDelegate: NSObjectProtocol {
     func validateParams() -> Bool
 }
 
@@ -61,7 +61,7 @@ extension XNRequestValidatorDelegate {
 }
 
 /// 请求回调代理
-protocol XNRequestCallbackDelegate: NSObjectProtocol {
+public protocol XNRequestCallbackDelegate: NSObjectProtocol {
     func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>)
     
     func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel)
@@ -81,7 +81,7 @@ extension XNRequestCallbackDelegate {
     }
 }
 
-class XNRequestManager: NSObject {
+public class XNRequestManager: NSObject {
     weak var configutionDelegate: XNRequestConfigutionDelegate!
     weak var domainConfigutionDelegate: XNRequestDomainConfigutionDelegate!
     weak var paramsDelegate: XNRequestParamsDelegate!

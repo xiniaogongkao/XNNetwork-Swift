@@ -8,7 +8,7 @@
 
 import UIKit
 
-class XNNetworkDefine: NSObject {}
+public class XNNetworkDefine: NSObject {}
 
 extension XNNetworkDefine {
     

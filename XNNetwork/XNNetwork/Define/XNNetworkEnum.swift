@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-enum XNAPIResposeStatus {
+public enum XNAPIResposeStatus {
     case success
     case noLogged
     case invalidToken
@@ -18,7 +18,7 @@ enum XNAPIResposeStatus {
     case otherError
 }
 
-enum XNAPIManagerErrorType: Int, Encodable {
+public enum XNAPIManagerErrorType: Int, Encodable {
     case `default` = -100
     case JSONError = -200
     case paramsError = -300
@@ -30,7 +30,7 @@ enum XNAPIManagerErrorType: Int, Encodable {
     case callError = -9999
 }
 
-enum XNAPIRequestType {
+public enum XNAPIRequestType {
     case get
     case post
     
@@ -44,7 +44,7 @@ enum XNAPIRequestType {
     }
 }
 
-enum XNAPIRequestSerializerType {
+public enum XNAPIRequestSerializerType {
     case JSON
     case HTTP
     
