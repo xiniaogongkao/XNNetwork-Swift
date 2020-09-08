@@ -22,35 +22,35 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
         self.callbackDelegate = self
     }
     
-    public func requestURI() -> XNNetworkDefine.XNRequestURIName {
+    open func requestURI() -> XNNetworkDefine.XNRequestURIName {
         return self.uri
     }
     
-    public func requestType() -> XNAPIRequestType {
+    open func requestType() -> XNAPIRequestType {
         return .post
     }
     
-    public func requestSerializerType() -> XNAPIRequestSerializerType {
+    open func requestSerializerType() -> XNAPIRequestSerializerType {
         return .JSON
     }
     
-    public func configuration() -> XNAPIConfiguration {
+    open func configuration() -> XNAPIConfiguration {
         return XNAPIConfiguration()
     }
     
-    public func requestParams() -> Dictionary<String, Any>? {
+    open func requestParams() -> Dictionary<String, Any>? {
         return self.params
     }
     
-    public func requestHeaders() -> Dictionary<String, String> {
+    open func requestHeaders() -> Dictionary<String, String> {
         return [:]
     }
     
-    public func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) {
+    open func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) {
         
     }
     
-    public func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) {
+    open func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) {
         
     }
     
@@ -59,7 +59,7 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
 extension XNBaseAPIManager {
     
     @discardableResult
-    public func request(uri: XNNetworkDefine.XNRequestURIName, params: Dictionary<String, Any>? = nil, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
+    open func request(uri: XNNetworkDefine.XNRequestURIName, params: Dictionary<String, Any>? = nil, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
         self.uri = uri
         self.params = params
         return self.startRequest(successBlock: successBlock, failedBlock: failedBlock)
