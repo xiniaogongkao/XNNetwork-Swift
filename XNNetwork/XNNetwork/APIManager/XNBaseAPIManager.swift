@@ -13,7 +13,7 @@ public class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, X
     public var params: Dictionary<String, Any>?
     public var uri: XNNetworkDefine.XNRequestURIName = .default
    
-    override init() {
+    public override init() {
         super.init()
         self.configutionDelegate = self
         self.domainConfigutionDelegate = self
