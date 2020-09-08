@@ -26,15 +26,15 @@ public protocol XNRequestConfigutionDelegate: NSObjectProtocol {
 }
 
 extension XNRequestConfigutionDelegate {
-    func shouldCache() -> Bool {
+    public func shouldCache() -> Bool {
         return false
     }
     
-    func saveCacheFromJson(_ json: Dictionary<String, Any>) -> Bool {
+    public func saveCacheFromJson(_ json: Dictionary<String, Any>) -> Bool {
         return false
     }
     
-    func jsonFromCache() -> Dictionary<String, Any>? {
+    public func jsonFromCache() -> Dictionary<String, Any>? {
         return nil
     }
 }
@@ -55,7 +55,7 @@ public protocol XNRequestValidatorDelegate: NSObjectProtocol {
 }
 
 extension XNRequestValidatorDelegate {
-    func validateParams() -> Bool {
+    public func validateParams() -> Bool {
         return true
     }
 }
@@ -72,11 +72,11 @@ public protocol XNRequestCallbackDelegate: NSObjectProtocol {
 }
 
 extension XNRequestCallbackDelegate {
-    func callbackFilterDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) -> Bool {
+    public func callbackFilterDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) -> Bool {
         return true
     }
     
-    func callbackFilterDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) -> Bool {
+    public func callbackFilterDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) -> Bool {
         return true
     }
 }

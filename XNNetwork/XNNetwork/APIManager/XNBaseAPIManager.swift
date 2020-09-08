@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNRequestDomainConfigutionDelegate, XNRequestParamsDelegate, XNRequestValidatorDelegate, XNRequestCallbackDelegate {
+ 
+public class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNRequestDomainConfigutionDelegate, XNRequestParamsDelegate, XNRequestValidatorDelegate, XNRequestCallbackDelegate {
     
     private var params: Dictionary<String, Any>?
     private var uri: XNNetworkDefine.XNRequestURIName = .default
@@ -22,35 +22,35 @@ class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNReques
         self.callbackDelegate = self
     }
     
-    func requestURI() -> XNNetworkDefine.XNRequestURIName {
+    public func requestURI() -> XNNetworkDefine.XNRequestURIName {
         return self.uri
     }
     
-    func requestType() -> XNAPIRequestType {
+    public func requestType() -> XNAPIRequestType {
         return .post
     }
     
-    func requestSerializerType() -> XNAPIRequestSerializerType {
+    public func requestSerializerType() -> XNAPIRequestSerializerType {
         return .JSON
     }
     
-    func configuration() -> XNAPIConfiguration {
+    public func configuration() -> XNAPIConfiguration {
         return XNAPIConfiguration()
     }
     
-    func requestParams() -> Dictionary<String, Any>? {
+    public func requestParams() -> Dictionary<String, Any>? {
         return self.params
     }
     
-    func requestHeaders() -> Dictionary<String, String> {
+    public func requestHeaders() -> Dictionary<String, String> {
         return [:]
     }
     
-    func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) {
+    public func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) {
         
     }
     
-    func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) {
+    public func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) {
         
     }
     
