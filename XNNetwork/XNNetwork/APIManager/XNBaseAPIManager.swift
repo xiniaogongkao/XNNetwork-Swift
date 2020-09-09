@@ -10,9 +10,9 @@ import UIKit
  
 open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNRequestDomainConfigutionDelegate, XNRequestParamsDelegate, XNRequestValidatorDelegate, XNRequestCallbackDelegate {
     
-    private var params: Dictionary<String, Any>?
-    private var uri: XNNetworkDefine.XNRequestURIName = .default
-    private var requestMethod: XNAPIRequestType = .post
+    public private(set) var params: Dictionary<String, Any>?
+    public private(set) var uri: XNNetworkDefine.XNRequestURIName = .default
+    public private(set) var requestMethod: XNAPIRequestType = .post
     
     public override init() {
         super.init()
