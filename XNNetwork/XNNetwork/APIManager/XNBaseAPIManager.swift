@@ -10,9 +10,10 @@ import UIKit
  
 open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNRequestDomainConfigutionDelegate, XNRequestParamsDelegate, XNRequestValidatorDelegate, XNRequestCallbackDelegate {
     
-    public var params: Dictionary<String, Any>?
-    public var uri: XNNetworkDefine.XNRequestURIName = .default
-   
+    private var params: Dictionary<String, Any>?
+    private var uri: XNNetworkDefine.XNRequestURIName = .default
+    private var requestMethod: XNAPIRequestType = .post
+    
     public override init() {
         super.init()
         self.configutionDelegate = self
@@ -27,7 +28,7 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
     }
     
     open func requestType() -> XNAPIRequestType {
-        return .post
+        return self.requestMethod
     }
     
     open func requestSerializerType() -> XNAPIRequestSerializerType {
@@ -59,9 +60,10 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
 extension XNBaseAPIManager {
     
     @discardableResult
-    open func request(uri: XNNetworkDefine.XNRequestURIName, params: Dictionary<String, Any>? = nil, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
+    open func request(uri: XNNetworkDefine.XNRequestURIName, params: Dictionary<String, Any>? = nil, requestMethod: XNAPIRequestType = .post, successBlock: XNAPIRequestSuccessBlock?, failedBlock: XNAPIRequestFailedBlock?) -> Int {
         self.uri = uri
         self.params = params
+        self.requestMethod = requestMethod
         return self.startRequest(successBlock: successBlock, failedBlock: failedBlock)
     }
 }
