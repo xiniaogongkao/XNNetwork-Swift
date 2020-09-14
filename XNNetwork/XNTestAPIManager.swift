@@ -9,7 +9,11 @@
 class XNTestAPIManager: XNBaseAPIManager {
 
     ///可通过单利、代理两种形式，单利发起请求是 request 方法
-    static let shared = XNTestAPIManager()
+    static var shared: XNTestAPIManager = {
+        let manager = XNTestAPIManager()
+        manager.isShared = true
+        return manager
+    }()
     
     override func configuration() -> XNAPIConfiguration {
         return XNAPIConfiguration.configuration(key: .testConfigKey) ?? XNAPIConfiguration()
@@ -30,6 +34,7 @@ class XNTestAPIManager: XNBaseAPIManager {
 ///写在通用配置中
 extension XNNetworkDefine.XNRequestURIName {
     static let testUri = XNNetworkDefine.XNRequestURIName(rawValue: "/code/course/courseIndexBanner")
+    static let testUri2 = XNNetworkDefine.XNRequestURIName(rawValue: "/code/course/courseIndexBanner")
 }
 
 extension XNNetworkDefine.XNConfigKey {

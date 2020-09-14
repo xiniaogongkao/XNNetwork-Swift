@@ -32,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        XNTestAPIManager.shared.request(uri: .testUri, params: nil, successBlock: { (manager, json) in
+            
+        }) { (manager, errorModel) in
+            
+        }
+        
         return true
     }
 

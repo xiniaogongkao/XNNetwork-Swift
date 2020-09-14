@@ -82,6 +82,7 @@ extension XNRequestCallbackDelegate {
 }
 
 open class XNRequestManager: NSObject {
+    
     weak var configutionDelegate: XNRequestConfigutionDelegate!
     weak var domainConfigutionDelegate: XNRequestDomainConfigutionDelegate!
     weak var paramsDelegate: XNRequestParamsDelegate!
