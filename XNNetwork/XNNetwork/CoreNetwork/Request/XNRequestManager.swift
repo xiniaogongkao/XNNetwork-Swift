@@ -95,6 +95,8 @@ open class XNRequestManager: NSObject {
     
     private var failedBlock: XNAPIRequestFailedBlock?
     
+    public var message: String?
+    
     @discardableResult
     public func startRequest(successBlock: XNAPIRequestSuccessBlock? = nil, failedBlock: XNAPIRequestFailedBlock? = nil) -> Int {
         self.successBlock = successBlock
@@ -170,6 +172,8 @@ extension XNRequestManager {
         let status = Int("\(self.findValue(dict: jsonDict, keys: self.domainConfigutionDelegate.configuration().keyModel.statusKeys))") ?? 0
         
         let message = "\(self.findValue(dict: jsonDict, keys: self.domainConfigutionDelegate.configuration().keyModel.messageKeys))"
+        
+        self.message = message
         
         var warpJsonDict: Dictionary<String, Any> = [:]
         
