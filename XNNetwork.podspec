@@ -9,12 +9,13 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { "f2yu" => "470623403@qq.com" }
   s.platform      = :ios, "9.0"
+  s.ios.deployment_target = '9.0'
   s.source       = { :git => "https://github.com/xiniaogongkao/XNNetwork-Swift.git", :tag => "1.0" }
   s.requires_arc = true
   
   s.subspec 'Define' do |ss|
     ss.source_files = "XNNetwork/XNNetwork/Define/*.swift"
-    ss.dependency 'Alamofire'
+    ss.dependency 'Alamofire', '~> 4.7.1'
   end
   
   s.subspec 'Configuration' do |ss|
@@ -48,8 +49,8 @@ Pod::Spec.new do |s|
     ss.subspec 'NetworkAgent' do |sss|
       sss.dependency 'XNNetwork/CoreNetwork/Response'
       sss.dependency 'XNNetwork/Configuration'
-      sss.dependency 'Alamofire'
-      
+      sss.dependency 'Alamofire', '~> 4.7.1'
+      7
       sss.source_files = "XNNetwork/XNNetwork/CoreNetwork/NetworkAgent/*.swift"
     end
     
@@ -60,7 +61,7 @@ Pod::Spec.new do |s|
       sss.dependency 'XNNetwork/Model'
       sss.dependency 'XNNetwork/Define'
       sss.dependency 'XNNetwork/Log'
-      sss.dependency 'Alamofire'
+      sss.dependency 'Alamofire', '~> 4.7.1'
     
       sss.source_files = "XNNetwork/XNNetwork/CoreNetwork/Request/*.swift"
     end
