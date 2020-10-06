@@ -6,6 +6,6 @@ target 'XNNetwork' do
   use_frameworks!
 
   # Pods for XNNetwork
-  pod 'Alamofire'
+#  pod 'Alamofire'
 
 end
