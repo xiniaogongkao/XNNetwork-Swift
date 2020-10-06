@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'Define' do |ss|
     ss.source_files = "XNNetwork/XNNetwork/Define/*.swift"
-    ss.dependency 'Alamofire', '~> 4.7.1'
+    ss.dependency 'Alamofire', '~> 4.9.1'
   end
   
   s.subspec 'Configuration' do |ss|
@@ -49,7 +49,7 @@ Pod::Spec.new do |s|
     ss.subspec 'NetworkAgent' do |sss|
       sss.dependency 'XNNetwork/CoreNetwork/Response'
       sss.dependency 'XNNetwork/Configuration'
-      sss.dependency 'Alamofire', '~> 4.7.1'
+      sss.dependency 'Alamofire', '~> 4.9.1'
       7
       sss.source_files = "XNNetwork/XNNetwork/CoreNetwork/NetworkAgent/*.swift"
     end
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
       sss.dependency 'XNNetwork/Model'
       sss.dependency 'XNNetwork/Define'
       sss.dependency 'XNNetwork/Log'
-      sss.dependency 'Alamofire', '~> 4.7.1'
+      sss.dependency 'Alamofire', '~> 4.9.1'
     
       sss.source_files = "XNNetwork/XNNetwork/CoreNetwork/Request/*.swift"
     end
