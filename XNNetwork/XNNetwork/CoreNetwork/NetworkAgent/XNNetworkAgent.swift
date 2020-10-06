@@ -16,7 +16,7 @@ class XNNetworkAgent: NSObject {
     
     private var dispatchTable: Dictionary<Int, DataRequest> = [:]
     
-    private let session = SessionManager(configuration: URLSessionConfiguration.default)
+    private let session = Session(configuration: URLSessionConfiguration.default)
     
     @discardableResult
     func request(type: XNAPIRequestType, requestSerializerType: XNAPIRequestSerializerType, headers: Dictionary<String, String>, params: Dictionary<String, Any>, domain: XNNetworkDefine.XNDomainName, uri: XNNetworkDefine.XNRequestURIName, success: XNNetworkCallBack? = nil, fail: XNNetworkCallBack? = nil) -> Int {
@@ -29,7 +29,7 @@ class XNNetworkAgent: NSObject {
         let url = "\(domain.rawValue)/\(uri.rawValue)".replacingOccurrences(of: "//", with: "/")
         let method = type.transToHTTPMethod()
         let encoding = requestSerializerType.transToParameterEncoding()
-        guard let r = try? URLRequest(url: url, method: method, headers: headers), var request = try? encoding.encode(r, with: params) else { return 0 }
+        guard let r = try? URLRequest(url: url, method: method, headers: HTTPHeaders(headers)), var request = try? encoding.encode(r, with: params) else { return 0 }
         request.timeoutInterval = config.timeout
         let dataRequest = session.request(request)
         
@@ -70,7 +70,7 @@ class XNNetworkAgent: NSObject {
     }
     
     func cancelAllRequest() {
-        SessionManager.default.session.getAllTasks { (tasks) in
+        Session.default.session.getAllTasks { (tasks) in
             tasks.forEach({ (task) in
                 task.cancel()
             })
