@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "XNNetwork"
-  s.version      = "1.0"
+  s.version      = "1.1"
   s.swift_versions = ["5.0"]
   s.summary      = "犀鸟网络库"
   s.homepage     = "https://github.com/xiniaogongkao/XNNetwork-Swift.git"
@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.author       = { "f2yu" => "470623403@qq.com" }
   s.platform      = :ios, "10.0"
   s.ios.deployment_target = '10.0'
-  s.source       = { :git => "https://github.com/xiniaogongkao/XNNetwork-Swift.git", :tag => "1.0" }
+  s.source       = { :git => "https://github.com/xiniaogongkao/XNNetwork-Swift.git", :tag => "1.1" }
   s.requires_arc = true
   
   s.subspec 'Define' do |ss|
