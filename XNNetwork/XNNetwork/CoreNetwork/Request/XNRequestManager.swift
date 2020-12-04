@@ -256,7 +256,7 @@ extension XNRequestManager {
         }
     }
     
-    private func resposeStatus(status: Int) -> XNAPIResposeStatus {
+    func resposeStatus(status: Int) -> XNAPIResposeStatus {
         return self.domainConfigutionDelegate.configuration().resposeStatusModelFromStatus(status).type
     }
     

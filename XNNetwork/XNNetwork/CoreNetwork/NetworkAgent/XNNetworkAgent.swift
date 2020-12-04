@@ -33,6 +33,8 @@ class XNNetworkAgent: NSObject {
         request.timeoutInterval = config.timeout
         let dataRequest = session.request(request)
         
+        
+        
         dataRequest.responseJSON { [weak self] (response) in
             guard let `self` = self else { return }
             self.dispatchTable.removeValue(forKey: dataRequest.task?.taskIdentifier ?? 0)
