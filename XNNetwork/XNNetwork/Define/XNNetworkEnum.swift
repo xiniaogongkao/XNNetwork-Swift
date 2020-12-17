@@ -68,14 +68,14 @@ public enum XNAPIRequestType {
 
 public enum XNAPIRequestSerializerType {
     case JSON
-    case HTTP
+    case HTTP(_ encoding: URLEncoding = URLEncoding())
     
     func transToParameterEncoding() -> ParameterEncoding {
         switch self {
         case .JSON:
             return JSONEncoding.default
-        case .HTTP:
-            return URLEncoding.default
+        case .HTTP(let encoding):
+            return encoding
         }
     }
 }
