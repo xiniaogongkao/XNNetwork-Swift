@@ -127,7 +127,7 @@ open class XNRequestManager: NSObject {
         
         let params = self.domainConfigutionDelegate.configuration().body.merging(self.paramsDelegate.requestParams() ?? [:], uniquingKeysWith: {$1})
     
-        XNNetworkLog.logRequestInfo(uri: uri.rawValue, params: params)
+        XNNetworkLog.logRequestInfo(domain: domain.rawValue, uri: uri.rawValue, params: params)
         
         requestID = XNNetworkAgent.shared.request(type: type, requestSerializerType: rType, headers: headers, params: params, domain: domain, uri: uri, success: { [weak self] (response) in
             self?.remove(requestID: requestID)
@@ -188,7 +188,7 @@ extension XNRequestManager {
         }
         
         if self.resposeStatus(status: status) == .success {
-            XNNetworkLog.logResponseInfo(uri: self.configutionDelegate.requestURI().rawValue, params: warpJsonDict)
+            XNNetworkLog.logResponseInfo(domain: self.domainConfigutionDelegate.configuration().domain.rawValue, uri: self.configutionDelegate.requestURI().rawValue, params: warpJsonDict)
             
             let isPass = self.callbackDelegate.callbackFilterDidSuccess(manager: self, json: warpJsonDict)
             if isPass == false {
@@ -256,7 +256,7 @@ extension XNRequestManager {
         }
     }
     
-    func resposeStatus(status: Int) -> XNAPIResposeStatus {
+    private func resposeStatus(status: Int) -> XNAPIResposeStatus {
         return self.domainConfigutionDelegate.configuration().resposeStatusModelFromStatus(status).type
     }
     
@@ -264,7 +264,7 @@ extension XNRequestManager {
         if self.callbackDelegate.callbackFilterDidFailed(manager: self, errorModel: errorModel) == false {
             return
         }
-        XNNetworkLog.logErrorModel(errorModel, uri: self.configutionDelegate.requestURI().rawValue)
+        XNNetworkLog.logErrorModel(errorModel, domain: self.domainConfigutionDelegate.configuration().domain.rawValue, uri: self.configutionDelegate.requestURI().rawValue)
         
         self.callbackDelegate.callbackDidFailed(manager: self, errorModel: errorModel)
         self.failedBlock?(self, errorModel)

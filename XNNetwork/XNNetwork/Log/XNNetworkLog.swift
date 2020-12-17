@@ -9,21 +9,24 @@
 import UIKit
 
 class XNNetworkLog: NSObject {
-    class func logRequestInfo(uri: String, params: Dictionary<String, Any>) {
+    class func logRequestInfo(domain: String, uri: String, params: Dictionary<String, Any>) {
         print("------------ Request Info --------------")
-        self.logURI(uri)
-        self.logParams(params)
+        logDomain(domain)
+        logURI(uri)
+        logParams(params)
     }
     
-    class func logResponseInfo(uri: String, params: Dictionary<String, Any>) {
+    class func logResponseInfo(domain: String, uri: String, params: Dictionary<String, Any>) {
         print("------------ Response Info --------------")
-        self.logURI(uri)
-        self.logParams(params)
+        logDomain(domain)
+        logURI(uri)
+        logParams(params)
     }
     
-    class func logErrorModel(_ errorModel: XNErrorModel, uri: String) {
+    class func logErrorModel(_ errorModel: XNErrorModel, domain: String, uri: String) {
         print("------------ Error Info --------------")
-        self.logURI(uri)
+        logDomain(domain)
+        logURI(uri)
         let dict: [String : Any] = [
             "errorType" : (errorModel.errorType ?? .default).rawValue,
             "status" : errorModel.status ?? 0,
@@ -31,7 +34,11 @@ class XNNetworkLog: NSObject {
             "response.statusCode" : errorModel.response?.statusCode ?? 0,
             "response.message" : HTTPURLResponse.localizedString(forStatusCode: errorModel.response?.statusCode ?? 0)
             ]
-        self.logParams(dict)
+        logParams(dict)
+    }
+    
+    class func logDomain(_ domain: String) {
+        print("Domain: >> \(domain)")
     }
     
     class func logURI(_ uri: String) {

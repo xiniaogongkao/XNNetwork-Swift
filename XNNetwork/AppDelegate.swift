@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let config = XNAPIConfiguration()
-        config.domain = XNNetworkDefine.XNDomainName(rawValue: "http://appformal.xiniaogongkao.com")
+        config.domain = XNNetworkDefine.XNDomainName(rawValue: "http://yuanhaisu1.vaiwan.com")
         config.keyModel = XNAPIResposeKeyModel(statusKeys: ["code", "status"], messageKeys: ["message", "msg"], dataKeys: ["data"])
         config.statusConfigs = [XNAPIResposeStatusModel(type: .success, status: 100), XNAPIResposeStatusModel(type: .success, status: 200)]
 
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         print("\(XNAPIConfiguration.all())")
         
-        XNTestAPIManager.shared.request(uri: .testUri, params: nil, successBlock: { (manager, json) in
+        XNTestAPIManager.shared.request(uri: .testUri, params: ["courseware_id": 28, "camp_class_type_id": 17, "add_duration": 33], requestMethod: .put, successBlock: { (manager, json) in
             
         }) { (manager, errorModel) in
             

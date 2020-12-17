@@ -34,12 +34,34 @@ public enum XNAPIRequestType {
     case get
     case post
     
+    case connect
+    case delete
+    case head
+    case options
+    case patch
+    case put
+    case trace
+
     func transToHTTPMethod() -> Alamofire.HTTPMethod {
         switch self {
         case .get:
             return .get
         case .post:
             return .post
+        case .connect:
+            return .connect
+        case .delete:
+            return .delete
+        case .head:
+            return .head
+        case .options:
+            return .options
+        case .patch:
+            return .patch
+        case .put:
+            return .put
+        case .trace:
+            return .trace
         }
     }
 }

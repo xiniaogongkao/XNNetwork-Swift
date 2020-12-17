@@ -26,14 +26,15 @@ class XNTestAPIManager: XNBaseAPIManager {
                 "platform": "2",
                 "deviceid": "B193A668-E82A-4D09-AAC9-E8A14663DF6D",
                 "model"   : "iPhone 6s",
-                "userId"  : "0"
+                "userId"  : "0",
+                "Authorization" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTk1MDg0MDEsInVpZCI6MTIyfQ.9Q5B_KC_VrnyfXi8a6Qrn8b62V3x8yT7cGRpKV13rIg"
         ]
     }
 }
 
 ///写在通用配置中
 extension XNNetworkDefine.XNRequestURIName {
-    static let testUri = XNNetworkDefine.XNRequestURIName(rawValue: "/code/course/courseIndexBanner")
+    static let testUri = XNNetworkDefine.XNRequestURIName(rawValue: "/appRecordWareLearnTime")
     static let testUri2 = XNNetworkDefine.XNRequestURIName(rawValue: "/code/course/courseIndexBanner")
 }
 
