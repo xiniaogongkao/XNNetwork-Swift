@@ -58,6 +58,14 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
         
     }
     
+    public func callbackFilterDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) -> Bool {
+        return true
+    }
+    
+    public func callbackFilterDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>) -> Bool {
+        return true
+    }
+    
 }
 
 extension XNBaseAPIManager {
