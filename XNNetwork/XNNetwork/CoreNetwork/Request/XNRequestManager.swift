@@ -62,6 +62,9 @@ extension XNRequestValidatorDelegate {
 
 /// 请求回调代理
 public protocol XNRequestCallbackDelegate: NSObjectProtocol {
+    
+    func callback(response: XNResponse)
+    
     func callbackDidSuccess(manager: XNRequestManager, json: Dictionary<String, Any>)
     
     func callbackDidFailed(manager: XNRequestManager, errorModel: XNErrorModel)
@@ -131,9 +134,11 @@ open class XNRequestManager: NSObject {
         
         requestID = XNNetworkAgent.shared.request(type: type, requestSerializerType: rType, headers: headers, params: params, domain: domain, uri: uri, success: { [weak self] (response) in
             self?.remove(requestID: requestID)
+            self?.callbackDelegate.callback(response: response)
             self?.success(response: response)
         }) { [weak self] (response) in
             self?.remove(requestID: requestID)
+            self?.callbackDelegate.callback(response: response)
             self?.fail(response: response)
         }
         self.requestIDs.append(requestID)
