@@ -58,6 +58,10 @@ open class XNBaseAPIManager: XNRequestManager, XNRequestConfigutionDelegate, XNR
         
     }
     
+    open func callback(response: XNResponse) {
+        
+    }
+    
     open func callbackFilterDidFailed(manager: XNRequestManager, errorModel: XNErrorModel) -> Bool {
         return true
     }
